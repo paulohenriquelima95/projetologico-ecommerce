@@ -1,0 +1,76 @@
+use ecommerce;
+
+-- inserindo dados no banco de dados
+
+-- Inserindo dados na tabela clients
+insert into clients(Fname, Minit, Lname, CPF, Address) 
+					values ('João','A','Pereira', 11223344556, 'Rua das Flores, 123, Jardim - SP'),
+						   ('Ana','B','Santos', 22334455667, 'Avenida Paulista, 500, Bela Vista - SP'),
+						   ('Carlos','C','Lima', 33445566778, 'Rua da Paz, 200, Copacabana - RJ'),
+						   ('Fernanda','D','Oliveira', 44556677889, 'Rua da Harmonia, 345, Liberdade - SP'),
+						   ('Lucas','E','Souza', 55667788990, 'Rua do Sol, 98, Centro - MG'),
+						   ('Mariana','F','Alves', 66778899001, 'Avenida das Américas, 1000, Barra - RJ');
+
+-- Inserindo dados na tabela product
+insert into product(Pname, Classification_kids, Category, Feedback, Size) 
+						values ('Smartphone',false,'Eletronico',4.5,null),
+                               ('Boneca Barbie',true,'Brinquedos',4.2,null),
+                               ('Camiseta Infantil',true,'Vestimenta',4.7,'M'),
+                               ('Notebook',false,'Eletronico',4.8,'15 polegadas'),
+                               ('Bicicleta',false,'Esportes',4.3,null),
+                               ('Arroz',false,'Alimentos',4.0,null),
+                               ('Caixa de Som',false,'Eletronico',4.6,null);
+
+-- Inserindo dados na tabela orders
+insert into orders (idOrderClient, OrderStatus, OrderDescription, ShippingCost)
+					values (1, default,'Compra realizada via website',30),
+						   (2,default,'Compra realizada via aplicativo',15),
+						   (3,'Confirmado',null,25),
+						   (4,default,'Compra realizada via website',20);
+
+-- Inserindo dados na tabela productOrder
+insert into productOrder(idPOproduct, idPOorder, poQuantity, poStatus) 
+					values(1,1,2,'Disponivel'), 
+						  (2,2,1,'Disponivel'), 
+						  (4,3,1,'Disponivel');
+
+-- Inserindo dados na tabela productStorage
+insert into productStorage (StorageLocation,Quantity) 
+							values ('São Paulo',500),
+								   ('Rio de Janeiro',300),
+								   ('Brasília',200),
+								   ('Curitiba',150),
+								   ('Fortaleza',100);
+
+-- Inserindo dados na tabela storeagelocation
+insert into storeagelocation (idLproduct, idLstorage, location) 
+						values(1,1,'SP'),
+							  (2,2,'RJ');
+
+-- Inserindo dados na tabela supplier
+insert into supplier (SocialName, CNPJ, contact) 
+							values ('Eletrônicos Silva', 12345678912345,'21985474'),
+								   ('Brinquedos Brasil', 98765432109876,'119845678'),
+								   ('Roupas & Cia', 45678912345678,'11987654321');
+
+-- Inserindo dados na tabela seller
+insert into seller (SocialName, AbstName, CNPJ, CPF, location, contact) values 
+						('Loja Tech', null, 12345678945632, null, 'São Paulo', 11987654321),
+						('Moda Kids',null,null,987654321,'Rio de Janeiro', 219567895),
+						('Esporte Total',null,98765432198765,null,'Curitiba', 4197654321);
+
+-- Inserindo dados na tabela productSeller
+insert into productSeller (idPseller, idPproduct, prodQuantity) values 
+						 (1,1,50),
+                         (2,2,20);
+
+-- Consultas
+
+-- Contando o número de clientes cadastrados
+select count(*) from clients;
+
+-- Recuperando quantos pedidos foram realizados pelos clientes
+select c.idClient, Fname as Client_name, count(*) as Num_Orders
+		from clients c 
+        inner join orders o ON c.idClient = o.idOrderClient
+		group by idClient;
