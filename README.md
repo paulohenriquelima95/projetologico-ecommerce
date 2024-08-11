@@ -62,5 +62,3 @@ Todo o projeto, incluindo o modelo lógico, o script SQL e as queries, foi adici
 Este projeto demonstra a capacidade de modelar um banco de dados lógico robusto e funcional para um sistema de e-commerce, atendendo às necessidades do negócio e às boas práticas de design de bancos de dados.
 
 ---
-
-Essa descrição fornece um contexto claro e detalhado do projeto, o que deve ajudar tanto na compreensão do que foi feito quanto na avaliação do seu trabalho.
