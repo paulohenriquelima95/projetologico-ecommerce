@@ -1,7 +1,3 @@
-Aqui está uma versão aprimorada da descrição do projeto que você pode usar no seu GitHub:
-
----
-
 # Desafio de Projeto DIO - Construindo seu Primeiro Projeto Lógico de Banco de Dados (ECOMMERCE)
 
 ## Descrição do Projeto
